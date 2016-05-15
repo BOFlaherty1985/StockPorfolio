@@ -7,26 +7,14 @@ import domain.Stock;
  */
 public class StockPortfolioServiceImpl {
 
-    private final FtseApiService ftseApiService;
+    private FtseApiService ftseApiService;
 
     public StockPortfolioServiceImpl(FtseApiService ftseApiService) {
         this.ftseApiService = ftseApiService;
     }
 
-    public Stock retrieveStockDetailsByTicket() {
-
-        final Stock stock = new Stock();
-        stock.setCompanyName("abc");
-        stock.setTicker("xxx");
-        stock.setCurrentPrice("123");
-        stock.setPriceChange("-1");
-
-        getFtseApiService();
-
-        return stock;
+    public Stock retrieveStockDetailsByTicker(String stockTicker) {
+        return ftseApiService.getStockDetailsByTicker(stockTicker);
     }
 
-    protected FtseApiService getFtseApiService() {
-        return ftseApiService;
-    }
 }
