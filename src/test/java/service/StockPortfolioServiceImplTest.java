@@ -7,16 +7,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Benjamin on 15/05/2016.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class StockPortfolioServiceImplTest {
 
@@ -90,14 +88,15 @@ public class StockPortfolioServiceImplTest {
         assertEquals("ABC", stock.getTicker());
     }
 
-    private Stock createStubStock(String stockTicker) {
+    private Optional<Stock> createStubStock(String stockTicker) {
         final Stock stock = new Stock();
+
         stock.setCompanyName("abc");
         stock.setTicker(stockTicker);
         stock.setCurrentPrice("123");
         stock.setPriceChange("-1");
 
-        return stock;
+        return Optional.of(stock);
     }
 
     private void setupMockStockObject() {
